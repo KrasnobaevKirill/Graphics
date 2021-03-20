@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.059,=C:\Users\1337\Desktop\1\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.146,=C:\Users\1337\Desktop\Новая папка (2)\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.951,D:\Учеба\ООП\КП\Unit3.pas=D:\Учеба\ООП\КП\About.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.504,D:\Учеба\ООП\КП\Splash.dfm=D:\Учеба\ООП\КП\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.459,=C:\Users\Кирилл\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.756,C:\Users\Кирилл\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Учеба\ООП\КП\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.352,C:\Users\1337\Desktop\Новая папка (2)\Unit2.pas=C:\Users\1337\Desktop\Новая папка (2)\Graph.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.743,=C:\Users\Кирилл\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.143,C:\Users\Кирилл\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Учеба\ООП\КП\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.848,D:\Учеба\ООП\КП\Project1.dproj=D:\Учеба\ООП\КП\Построение_графиков.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.504,D:\Учеба\ООП\КП\Splash.pas=D:\Учеба\ООП\КП\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.756,C:\Users\Кирилл\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Учеба\ООП\КП\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.951,D:\Учеба\ООП\КП\Unit3.dfm=D:\Учеба\ООП\КП\About.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.382,=D:\Учеба\ООП\КП\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.132,=D:\Учеба\ООП\КП\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.329,=D:\Учеба\ООП\КП\Unit2.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,197 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VclTee.TeeGDIPlus, VCLTee.TeEngine,
+  Vcl.ExtCtrls, VCLTee.TeeProcs, VCLTee.Chart, Vcl.StdCtrls, VCLTee.TeeFunci,
+  VCLTee.Series;
+
+type
+  TForm1 = class(TForm)
+    Chart1: TChart;
+    Label1: TLabel;
+    ComboBox1: TComboBox;
+    Panel1: TPanel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Label7: TLabel;
+    Label8: TLabel;
+    Edit5: TEdit;
+    Label9: TLabel;
+    Edit6: TEdit;
+    Button1: TButton;
+    Series1: TFastLineSeries;
+    TeeFunction1: TCustomTeeFunction;
+    Button2: TButton;
+    Series2: TFastLineSeries;
+    TeeFunction2: TCustomTeeFunction;
+    ColorDialog1: TColorDialog;
+    Button3: TButton;
+    Label10: TLabel;
+    ComboBox2: TComboBox;
+    Panel2: TPanel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Edit9: TEdit;
+    Edit10: TEdit;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Edit11: TEdit;
+    Edit12: TEdit;
+    Button4: TButton;
+    Button5: TButton;
+    ColorDialog2: TColorDialog;
+    procedure SetEditChars(Sender: TObject; var Key: Char);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit5KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit6KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit11KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit12KeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+uses
+  Graph;
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);        //Построение 1 функции
+var
+  a, b, c, d, range1, range2, i: double;
+  graph: TPlot1;
+begin
+  if (edit5.Text = '') or (edit6.Text = '') or (strtofloat(edit5.text) >= strtofloat(edit6.text)) or (edit1.Text = '') or (edit2.Text = '') or (edit3.Text = '') or (edit4.Text = '') or (edit5.Text = '') then
+    showmessage('Заполните все поля корректно!')
+  else
+  begin
+    chart1.UndoZoom;
+    if combobox1.ItemIndex = -1 then
+      showmessage('Выберите вид функции');
+
+    if combobox1.ItemIndex = 0 then    //y=a*x^3+ b*x^2+c*x+d
+    begin
+      a := strtofloat(edit1.text);
+      b := strtofloat(edit2.text);
+      c := strtofloat(edit3.text);
+      d := strtofloat(edit4.text);
+      graph := TPlot1.Create(a, b, c, d);
+      range1 := strtofloat(edit5.text);
+      range2 := strtofloat(edit6.text);
+      graph.Draw(range1, range2, Series1, ColorDialog1.Color);
+    end;
+
+  end;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);   //Очистка поля
+begin
+  Series1.Clear;
+  Series2.Clear;
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);   //Выбор цвета  1 функции
+begin
+  colordialog1.Execute;
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);    //Выбор цвета 2 функции
+begin
+  colordialog2.Execute;
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);         // Построение 2 функции
+var
+  a, b, c, d, range1, range2, i: real;
+begin
+  chart1.UndoZoom;
+  Series2.Clear;
+  if combobox2.ItemIndex = -1 then
+    showmessage('Выберите вид функции');
+  if combobox2.ItemIndex = 0 then    //y=a*x^3+ b*x^2+c*x+d
+  begin
+    a := strtofloat(edit7.text);
+    b := strtofloat(edit8.text);
+    c := strtofloat(edit9.text);
+    d := strtofloat(edit10.text);
+    range1 := strtofloat(edit11.text);
+    range2 := strtofloat(edit12.text);
+    series2.Color := ColorDialog2.Color;
+    i := range1;
+    while i <= range2 do
+    begin
+      Series2.AddXY(i, a * i * i * i + b * i * i + c * i + d);
+      i := i + 0.1;
+    end;
+  end;
+
+end;
+
+procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);  //Разрешение ввода только цифр (коэффициенты)
+begin
+  if not (Key in ['0'..'9', #8, #44, #45]) then
+    Key := #0;
+end;
+
+procedure TForm1.SetEditChars(Sender: TObject; var Key: Char);  //Разрешение ввода только цифр и ограничение диапазона(диапазон)
+begin
+  with Sender as TEdit do
+  begin
+    if not (Key in ['0'..'9', #8, #44, #45]) then
+      Key := #0;
+    if Text = '' then
+      MaxLength := 3;
+    if Key = #45 then
+      MaxLength := 4;
+  end;
+
+end;
+
+procedure TForm1.Edit11KeyPress(Sender: TObject; var Key: Char);
+begin
+SetEditChars(Sender,key);
+end;
+
+procedure TForm1.Edit12KeyPress(Sender: TObject; var Key: Char);
+begin
+SetEditChars(Sender,key);
+end;
+
+procedure TForm1.Edit5KeyPress(Sender: TObject; var Key: Char);
+begin
+SetEditChars(Sender,key);
+end;
+
+procedure TForm1.Edit6KeyPress(Sender: TObject; var Key: Char);
+begin
+SetEditChars(Sender,key);
+end;
+
+end.
+

@@ -1,0 +1,128 @@
+unit Graph;
+
+interface
+
+uses
+  VCLTee.Series, Math, Dialogs;
+
+type
+  TGraph = class abstract
+  public
+    Fa, Fb, Fc, Fd: Double;
+    constructor Create(a, b, c, d: Double);
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); virtual; abstract;
+  end;
+
+  TCubic = class(TGraph)
+  public
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); override;
+  end;
+
+  TCos = class(TGraph)
+  public
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); override;
+  end;
+
+  TSin = class(TGraph)
+  public
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); override;
+  end;
+
+  TTg = class(TGraph)
+  public
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); override;
+  end;
+
+  TCtg = class(TGraph)
+  public
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); override;
+  end;
+
+implementation
+
+constructor TGraph.Create(a, b, c, d: Double);
+begin
+  Fa := a;
+  Fb := b;
+  Fc := c;
+  Fd := d;
+end;
+
+procedure TCubic.Draw(start, finish: Double; Series: TFastLineSeries; color: Integer);
+var
+  x: double;
+begin
+  Series.Clear;
+  if (Fa<>0) or (Fb<>0) or (Fc<>0) or (Fc<>0) then
+    begin
+      Series.Color := color;
+      x := start;
+      while x <= finish do
+      begin
+      Series.AddXY(x, Fa*x*x*x + Fb*x*x + Fc*x + Fd);
+      x := x + 0.1;
+      end;
+    end;
+end;
+
+procedure TCos.Draw(start, finish: Double; Series: TFastLineSeries; color: Integer);
+var
+  x: double;
+begin
+  Series.Clear;
+  if Fa<>0 then
+    begin
+      Series.Color := color;
+      x := start;
+      while x <= finish do
+      begin
+        Series.AddXY(x, Fa*cos(Fb*x));
+        x := x + 0.1;
+      end;
+    end;
+end;
+
+procedure TSin.Draw(start, finish: Double; Series: TFastLineSeries; color: Integer);
+var
+  x: double;
+begin
+  Series.Clear;
+  Series.Color := color;
+  x := start;
+  while x <= finish do
+  begin
+    Series.AddXY(x, Fa*sin(Fb*x));
+    x := x + 0.1;
+  end;
+end;
+
+procedure TTg.Draw(start, finish: Double; Series: TFastLineSeries; color: Integer);
+var
+  x: double;
+begin
+  Series.Clear;
+  Series.Color := color;
+  x := start;
+  while x <= finish do
+  begin
+    Series.AddXY(x, Fa*tan(Fb*x));
+    x := x + 0.1;
+  end;
+end;
+
+procedure TCtg.Draw(start, finish: Double; Series: TFastLineSeries; color: Integer);
+var
+  x: double;
+begin
+  Series.Clear;
+  Series.Color := color;
+  x := start;
+  while x <= finish do
+  begin
+    Series.AddXY(x, Fa*cotan(Fb*x));
+    x := x + 0.1;
+  end;
+end;
+
+end.
+

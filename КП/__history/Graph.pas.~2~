@@ -1,0 +1,122 @@
+unit Graph;
+
+interface
+
+uses
+  VCLTee.Series;
+
+type
+  TGraph = class abstract
+  public
+    Fa, Fb, Fc, Fd: Double;
+    constructor Create(a, b, c, d: Double);
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); virtual; abstract;
+  end;
+
+  TPlot1 = class(TGraph)
+  public
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); override;
+  end;
+
+  TPlot2 = class(TGraph)
+  public
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); override;
+  end;
+
+  TPlot3 = class(TGraph)
+  public
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); override;
+  end;
+
+  TPlot4 = class(TGraph)
+  public
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); override;
+  end;
+
+  TPlot5 = class(TGraph)
+  public
+    procedure Draw(start, finish: Double; Series: TFastLineSeries; color: Integer); override;
+  end;
+
+implementation
+
+constructor TGraph.Create(a, b, c, d: Double);
+begin
+  Fa := a;
+  Fb := b;
+  Fc := c;
+  Fd := d;
+end;
+
+procedure TPlot1.Draw(start, finish: Double; Series: TFastLineSeries; color: Integer);
+var
+  x: double;
+begin
+  Series.Clear;
+  Series.Color := color;
+  x := start;
+  while x <= finish do
+  begin
+    Series.AddXY(x, Fa * x * x * x + Fb * x * x + Fc * x + Fd);
+    x := x + 0.1;
+  end;
+end;
+
+procedure TPlot2.Draw(start, finish: Double; Series: TFastLineSeries; color: Integer);
+var
+  x: double;
+begin
+  Series.Clear;
+  Series.Color := color;
+  x := start;
+  while x <= finish do
+  begin
+    //Series.AddXY(x, Fa * x * x * x + Fb * x * x + Fc * x + Fd);
+    x := x + 0.1;
+  end;
+end;
+
+procedure TPlot3.Draw(start, finish: Double; Series: TFastLineSeries; color: Integer);
+var
+  x: double;
+begin
+  Series.Clear;
+  Series.Color := color;
+  x := start;
+  while x <= finish do
+  begin
+    //Series.AddXY(x, Fa * x * x * x + Fb * x * x + Fc * x + Fd);
+    x := x + 0.1;
+  end;
+end;
+
+procedure TPlot4.Draw(start, finish: Double; Series: TFastLineSeries; color: Integer);
+var
+  x: double;
+begin
+  Series.Clear;
+  Series.Color := color;
+  x := start;
+  while x <= finish do
+  begin
+    //Series.AddXY(x, Fa * x * x * x + Fb * x * x + Fc * x + Fd);
+    x := x + 0.1;
+  end;
+end;
+
+procedure TPlot5.Draw(start, finish: Double; Series: TFastLineSeries; color: Integer);
+var
+  x: double;
+begin
+  Series.Clear;
+  Series.Color := color;
+  x := start;
+  while x <= finish do
+  begin
+    //Series.AddXY(x, Fa * x * x * x + Fb * x * x + Fc * x + Fd);
+    x := x + 0.1;
+  end;
+end;
+
+end.
+
